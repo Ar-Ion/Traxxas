@@ -1,0 +1,5 @@
+device: /dev/tty_RTKGPS
+frame_id: gps_link
+uart1:
+  baudrate: 115200
+config_on_startup: false

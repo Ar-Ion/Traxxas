@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<launch>
+    <!-- Kalman filter without GNSS args -->
+    <arg name="ekf_config" default="ekf_config"/>
+    <arg name="ekf_calib" default="radar_calib"/>
+    <arg name="topic_twist" default="/estimators/twist"/>
+    <arg name="topic_radar_scan" default="/sensors/radar/pcl"/>
+    <arg name="use_odr" default="False"/>
+    <arg name="run_without_radar_trigger" default="True"/>
+    <arg name="log_level" default="Info"/>
+    
+    <!-- Kalman filter without GNSS node -->
+    <node name="ekf_rio" pkg="ekf_rio" type="ekf_rio_ros_node" output="screen" launch-prefix="bash -c 'sleep 2; $0 $@' ">
+        <rosparam file="$(find state_estimation)/cfg/$(arg ekf_config).yaml" command="load" ns=""/>
+        <rosparam file="$(find state_estimation)/cfg/$(arg ekf_calib).yaml" command="load" ns=""/>
+        <param name="b_0_w_z_deg" value="-0.05" type="double"/>
+        <param name="run_without_radar_trigger" value="$(arg run_without_radar_trigger)" type="bool"/>
+    </node>
+
+    <node pkg="rosservice" type="rosservice" name="set_ekf_rio_log_level"
+          args="call --wait /ekf_rio/set_logger_level 'ros.ekf_rio' '$(arg log_level)'"/>
+</launch>

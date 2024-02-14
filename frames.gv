@@ -1,0 +1,10 @@
+digraph G {
+"base_link" -> "imu_link"[label="Broadcaster: /imu2base_link\nAverage rate: 10.186 Hz\nMost recent transform: 1707935237.774 ( -0.021 sec old)\nBuffer length: 4.909 sec\n"];
+"odom" -> "base_link"[label="Broadcaster: /kalman\nAverage rate: 30.306 Hz\nMost recent transform: 1707935237.711 ( 0.041 sec old)\nBuffer length: 4.950 sec\n"];
+"base_link" -> "radar_link"[label="Broadcaster: /radar2base_link\nAverage rate: 10.167 Hz\nMost recent transform: 1707935237.785 ( -0.032 sec old)\nBuffer length: 4.918 sec\n"];
+"base_link" -> "gps_link"[label="Broadcaster: /gps2base_link\nAverage rate: 10.189 Hz\nMost recent transform: 1707935237.793 ( -0.041 sec old)\nBuffer length: 4.907 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1707935237.753"[ shape=plaintext ] ;
+ }->"odom";
+}

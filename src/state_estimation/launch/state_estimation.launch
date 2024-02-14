@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="estimator" default="reve" /> 
+
+    <!-- TF nodes -->
+    <node pkg="tf" type="static_transform_publisher" name="radar2base_link" args="0 0 0 0 0 0 base_link radar_link 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="imu2base_link" args="0 0 0 0 0 0 base_link imu_link 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="gps2base_link" args="0 0 0 0 0 0 base_link gps_link 100"/>
+
+    <!-- Launch sensors -->
+    <include file="$(find state_estimation)/launch/imu.launch"/>
+    <include file="$(find state_estimation)/launch/radar.launch"/>
+    <include file="$(find state_estimation)/launch/gnss.launch"/>
+
+    <!-- Launch intermediate estimators -->
+    <include file="$(find state_estimation)/launch/reve.launch"/>
+    <include file="$(find state_estimation)/launch/madgwick.launch"/>
+
+    <!-- Launch transformation of navsat fix message -->
+    <include file="$(find state_estimation)/launch/navsat_transform.launch"/>
+
+    <!-- Launch Kalman filter -->
+    <include file="$(find state_estimation)/launch/kalman.launch"/>
+
+</launch>

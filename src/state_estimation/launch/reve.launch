@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<launch>
+     <!-- Reve filter args -->
+    <arg name="reve_config" default="reve_config"/>
+    <arg name="calibration" default="radar_calib"/>
+    <arg name="topic_twist" default="/estimators/twist"/>
+    <arg name="topic_radar_scan" default="/sensors/radar/pcl"/>
+    <arg name="run_without_trigger" default="True"/>
+    <arg name="use_odr" default="False"/>
+ 
+    <!-- Reve filter node -->
+    <node name="radar_ego_velocity_estimator" pkg="radar_ego_velocity_estimator" type="radar_ego_velocity_estimation_ros_node"
+            output="screen" launch-prefix="bash -c 'sleep 0.5; $0 $@' ">
+        <param name="sleep_ms" value="1" type="double"/>
+
+        <rosparam file="$(find state_estimation)/cfg/$(arg reve_config).yaml" command="load"/>
+        <rosparam file="$(find state_estimation)/cfg/$(arg calibration).yaml" command="load" ns=""/>
+
+        <param name="run_without_trigger" value="$(arg run_without_trigger)" type="bool"/>
+        <param name="use_odr" value="$(arg use_odr)" type="bool"/>
+        <param name="topic_twist" value="$(arg topic_twist)" type="string"/>
+    </node>
+</launch>

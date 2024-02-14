@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<launch>
+    <!-- IMU args -->
+    <arg name="imu_config" default="imu_config"/>
+    <arg name="imu_frame_id" default="imu"/>
+
+    <!-- IMU node -->
+	<node pkg="vectornav" type="vnpub" name="vectornav" output="screen">
+        <rosparam command="load" file="$(find state_estimation)/cfg/$(arg imu_config).yaml" />
+        <remap from="/vectornav/IMU" to="/sensors/IMU" />
+        <remap from="/vectornav/Mag" to="/sensors/magnetometer" />
+        <remap from="/vectornav/Pres" to="/sensors/barometer" />
+        <remap from="/vectornav/Temp" to="/sensors/temperature" />
+    </node>	
+</launch>

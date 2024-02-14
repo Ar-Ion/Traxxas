@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="kalman_config" default="kalman_config"/>
+
+    <node pkg="robot_localization" type="ekf_localization_node" name="kalman" clear_params="true">
+        <rosparam command="load" file="$(find state_estimation)/cfg/$(arg kalman_config).yaml" />
+        <remap from="odometry/filtered" to="estimators/odom"/>
+        <remap from="accel/filtered" to="estimators/accel"/>
+    </node>
+</launch>

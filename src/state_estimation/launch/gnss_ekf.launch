@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<launch>
+    <!-- Kalman filter with GNSS args -->
+    <arg name="gnss_ekf_config" default="gnss_ekf_config"/>
+    <arg name="gnss_ekf_calib" default="radar_calib"/>
+
+    <arg name="n_radar" default="1"/>
+    <arg name="estimate_extrinsics" default="true"/>
+
+    <arg name="sigma_p_0" default="2"/>
+    <arg name="sigma_yaw_0_deg" default="3"/>
+    <arg name="log_level" default="Info"/>
+
+    <!-- Kalman filter with GNSS node -->
+    <node name="gnss_ekf_rio" pkg="gnss_x_rio" type="gnss_x_rio_ros_node" output="screen" launch-prefix="bash -c 'sleep 0.; $0 $@' " clear_params="false">
+        <rosparam file="$(find state_estimation)/cfg/$(arg gnss_ekf_config).yaml" command="load" ns=""/>
+        <rosparam file="$(find state_estimation)/cfg/$(arg gnss_ekf_calib).yaml" command="load" ns="radar_0"/>
+        <param name="b_0_w_z_deg" value="-0.1" type="double"/>
+        <param name="yaw_0_deg" value="0" type="double"/>
+        <param name="estimate_extrinsics" value="$(arg estimate_extrinsics)" type="bool"/>
+        <param name="n_radar" value="$(arg n_radar)" type="int"/>
+
+        <param name="sigma_yaw_deg" value="$(arg sigma_yaw_0_deg)" type="double"/>
+        <param name="sigma_p" value="$(arg sigma_p_0)" type="double"/>
+    </node>
+</launch>

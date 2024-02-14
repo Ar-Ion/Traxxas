@@ -1,0 +1,12 @@
+[submodule "src/catkin_simple"]
+	path = src/catkin_simple
+	url = https://github.com/catkin/catkin_simple
+[submodule "src/rio"]
+	path = src/rio
+	url = https://github.com/christopherdoer/rio
+[submodule "src/vectornav"]
+	path = src/vectornav
+	url = https://github.com/dawonn/vectornav
+[submodule "src/mmwave_ti_ros"]
+	path = src/mmwave_ti_ros
+	url = https://git.ti.com/git/mmwave_radar/mmwave_ti_ros.git
