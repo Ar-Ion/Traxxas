@@ -4,6 +4,6 @@
         <param name="publish_tf" value="false"/>
         <remap from="imu/data_raw" to="sensors/IMU"/>
         <remap from="imu/mag" to="sensors/magnetometer"/>
-        <remap from="imu/data" to="estimators/madwick"/>
+        <remap from="imu/data" to="estimators/madgwick"/>
     </node>
 </launch>
