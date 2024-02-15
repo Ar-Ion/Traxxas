@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="model" default="$(find state_estimation)/urdf/robot.xacro"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" />
+</launch>

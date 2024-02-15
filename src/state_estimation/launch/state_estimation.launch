@@ -1,12 +1,8 @@
 <?xml version="1.0"?>
 
 <launch>
-    <arg name="estimator" default="reve" /> 
-
     <!-- TF nodes -->
-    <node pkg="tf" type="static_transform_publisher" name="radar2base_link" args="0 0 0 0 0 0 base_link radar_link 100"/>
-    <node pkg="tf" type="static_transform_publisher" name="imu2base_link" args="0 0 0 0 0 0 base_link imu_link 100"/>
-    <node pkg="tf" type="static_transform_publisher" name="gps2base_link" args="0 0 0 0 0 0 base_link gps_link 100"/>
+    <include file="$(find state_estimation)/launch/robot_description.launch"/>
 
     <!-- Launch sensors -->
     <include file="$(find state_estimation)/launch/imu.launch"/>
