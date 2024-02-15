@@ -38,7 +38,7 @@
 
 <launch>
     <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" clear_params="true">
-        <rosparam command="load" file="$(find robot_localization)/params/navsat_transform_template.yaml" />
+        <rosparam command="load" file="$(find state_estimation)/cfg/navsat_transform_config.yaml" />
 
         <remap from="imu/data" to="sensors/IMU"/>
         <remap from="odometry/filtered" to="estimators/odom"/>
