@@ -123,7 +123,7 @@ twist0_config: [false, false, false,
 
 
 # IMU data
-imu0: sensors/IMU_ENU
+imu0: sensors/IMU
 imu0_config: [false, false, false,
               false,  false,  true,
               false, false, false,

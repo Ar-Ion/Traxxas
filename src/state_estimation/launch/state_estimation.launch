@@ -14,9 +14,6 @@
         <include file="$(find state_estimation)/launch/gnss.launch"/>
     </group>
 
-    <!-- NED2IMU node (temporary fix) -->
-	<node pkg="ned2enu" type="ned2enu.py" name="ned2enu" output="screen" />
-
     <!-- Launch intermediate estimators -->
     <include file="$(find state_estimation)/launch/reve.launch"/>
 
