@@ -40,8 +40,8 @@
     <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" clear_params="true">
         <rosparam command="load" file="$(find state_estimation)/cfg/navsat_transform_config.yaml" />
 
-        <remap from="imu/data" to="sensors/IMU"/>
-        <remap from="odometry/filtered" to="estimators/odom"/>
+        <remap from="imu/data" to="sensors/IMU_ENU"/>
+        <remap from="odometry/filtered" to="estimators/odom/global"/>
         <remap from="odometry/gps" to="estimators/gps_transformed"/>
         <remap from="gps/fix" to="sensors/GNSS/fix"/>
     </node>

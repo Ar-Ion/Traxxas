@@ -1,17 +1,24 @@
 <?xml version="1.0"?>
 
 <launch>
+
+    <arg name="rosbag" default="false" />
+
     <!-- TF nodes -->
     <include file="$(find state_estimation)/launch/robot_description.launch"/>
 
     <!-- Launch sensors -->
-    <include file="$(find state_estimation)/launch/imu.launch"/>
-    <include file="$(find state_estimation)/launch/radar.launch"/>
-    <include file="$(find state_estimation)/launch/gnss.launch"/>
+    <group if="$(eval arg('rosbag') == 'false')">
+        <include file="$(find state_estimation)/launch/imu.launch"/>
+        <include file="$(find state_estimation)/launch/radar.launch"/>
+        <include file="$(find state_estimation)/launch/gnss.launch"/>
+    </group>
+
+    <!-- NED2IMU node (temporary fix) -->
+	<node pkg="ned2enu" type="ned2enu.py" name="ned2enu" output="screen" />
 
     <!-- Launch intermediate estimators -->
     <include file="$(find state_estimation)/launch/reve.launch"/>
-    <include file="$(find state_estimation)/launch/madgwick.launch"/>
 
     <!-- Launch transformation of navsat fix message -->
     <include file="$(find state_estimation)/launch/navsat_transform.launch"/>

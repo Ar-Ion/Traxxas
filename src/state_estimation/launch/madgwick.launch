@@ -1,9 +1,0 @@
-<!-- Node for merging magnetometer and accelerometer data into a single imu message -->
-<launch>
-    <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter" output="screen">
-        <param name="publish_tf" value="false"/>
-        <remap from="imu/data_raw" to="sensors/IMU"/>
-        <remap from="imu/mag" to="sensors/magnetometer"/>
-        <remap from="imu/data" to="estimators/madgwick"/>
-    </node>
-</launch>
