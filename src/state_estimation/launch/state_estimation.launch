@@ -16,6 +16,7 @@
 
     <!-- Launch intermediate estimators -->
     <include file="$(find state_estimation)/launch/reve.launch"/>
+    <node pkg="ned2enu" type="ned2enu.py" name="ned2enu" output="screen"/>
 
     <!-- Launch transformation of navsat fix message -->
     <include file="$(find state_estimation)/launch/navsat_transform.launch"/>
