@@ -30,9 +30,8 @@ class Node:
         data.orientation.z = quat_out[2]
         data.orientation.w = quat_out[3]
 
-        (r, p, y) = euler_from_quaternion(quat_out)
-        
-        print("ENU yaw: " + str(y))
+        (r, p, y) = euler_from_quaternion(quat)
+        print("Input yaw: " + str(y))
 
         self.pub.publish(data)
 
