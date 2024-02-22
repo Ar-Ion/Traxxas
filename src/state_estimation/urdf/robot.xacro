@@ -440,7 +440,7 @@
         <joint name="gnss_joint" type="fixed" >
             <origin xyz="0 0 0.0275" rpy="0 0 0" />
             <parent link="sensors_base_link" />
-            <child link="gps_link"/>
+            <child link="gnss_link"/>
         </joint>
         
         <link name="radar_link">
@@ -487,7 +487,7 @@
             </collision>
         </link>
 
-        <link name="gps_link">
+        <link name="gnss_link">
             <inertial>
                 <mass value="0.1"/>
                 <origin xyz="0 0 0.0"/>
@@ -521,7 +521,7 @@
             <material>Gazebo/Red</material>
         </gazebo>
 
-        <gazebo reference="gps_link">
+        <gazebo reference="gnss_link">
             <material>Gazebo/Blue</material>
         </gazebo>
 </robot>
