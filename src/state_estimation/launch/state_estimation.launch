@@ -8,7 +8,7 @@
     <include file="$(find state_estimation)/launch/robot_description.launch"/>
 
     <!-- Launch sensors -->
-    <group if="$(eval arg('rosbag') == 'false')">
+    <group if="$(eval arg('rosbag') == false)">
         <include file="$(find state_estimation)/launch/imu.launch"/>
         <include file="$(find state_estimation)/launch/radar.launch"/>
         <include file="$(find state_estimation)/launch/gnss.launch"/>

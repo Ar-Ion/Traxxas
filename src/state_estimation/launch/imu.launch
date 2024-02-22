@@ -2,6 +2,7 @@
 
 <launch>
     <!-- IMU args -->
+	<arg name="imu_config" default="imu_config"/>
     <arg name="target_frame" default="base_link"/>
 	<arg name="frame_id" default="imu_link"/>
 
